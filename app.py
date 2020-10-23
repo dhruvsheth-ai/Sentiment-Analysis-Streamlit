@@ -56,6 +56,7 @@ def main():
 				st.markdown('Sentiment :: {}'.format(custom_emoji))
 
 			st.info("Polarity Score is:: {}".format(result))
+			st.write(int(result))
 	
 	# Choice Text Analysis
 	if choice == 'Text Analysis from URL':
