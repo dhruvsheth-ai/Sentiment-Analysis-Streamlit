@@ -5,7 +5,7 @@ from textblob import TextBlob
 import pandas as pd
 import numpy as np
 import nltk
-
+import plotly.graph_objects as go
 
 # Emoji
 import emoji
@@ -45,6 +45,16 @@ def main():
 		if st.button("Analyze"):
 			blob = TextBlob(raw_text)
 			result = blob.sentiment.polarity
+			result2 = (1-result)
+			result3 = (result+1)
+			if result > 0.0:
+				labels = ['Happy','Sad']
+				values = [result, result2]
+			elif result < 0.0:
+				labels = ['Happy','Sad']
+				values = [result3, abs(result)]
+			fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0, 0, 0.2, 0])])
+
 			if result > 0.0:
 				custom_emoji = ':smile:'
 				st.markdown('Sentiment :: {}'.format(custom_emoji))
@@ -57,6 +67,7 @@ def main():
 
 			st.info("Polarity Score is:: {}".format(result))
 			st.write(result)
+			st.plotly_chart(fig)
 	
 	# Choice Text Analysis
 	if choice == 'Text Analysis from URL':
