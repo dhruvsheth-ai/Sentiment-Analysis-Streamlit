@@ -53,6 +53,9 @@ def main():
 			elif result < 0.0:
 				labels = ['Happy','Sad']
 				values = [result3, abs(result)]
+			elif result = 0.0:
+				labels = ['Neutral']
+				values = [result]
 			fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0, 0, 0.2, 0])])
 
 			if result > 0.0:
